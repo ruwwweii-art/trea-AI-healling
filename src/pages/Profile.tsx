@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
@@ -17,7 +17,7 @@ export default function Profile() {
   const [showClearConfirm, setShowClearConfirm] = useState(false)
   const [showExportSuccess, setShowExportSuccess] = useState(false)
   const [showImportError, setShowImportError] = useState(false)
-  const fileInputRef = useState<HTMLInputElement | null>(null)[0]
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   // 计算统计数据
   const stats = useMemo(() => {
@@ -227,11 +227,7 @@ export default function Profile() {
 
         {/* 隐藏的文件输入框 */}
         <input
-          ref={(el) => {
-            if (el && !fileInputRef) {
-              fileInputRef = el
-            }
-          }}
+          ref={fileInputRef}
           type="file"
           accept=".json"
           onChange={handleImport}
