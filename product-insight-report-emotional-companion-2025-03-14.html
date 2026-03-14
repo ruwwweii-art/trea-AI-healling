@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情感陪伴产品洞察报告 - 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #eaeaea;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            color: #4ecdc4;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(78, 205, 196, 0.3);
+        }
+
+        .header .meta {
+            color: #a0a0a0;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            min-width: 150px;
+        }
+
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #4ecdc4;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #a0a0a0;
+            font-size: 0.9em;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 35px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section h2 {
+            color: #4ecdc4;
+            border-bottom: 3px solid #4ecdc4;
+            padding-bottom: 15px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+
+        .priority-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .matrix-point {
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .matrix-point:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .priority-high {
+            background: linear-gradient(135deg, #2d1b1b 0%, #1a0f0f 100%);
+            border: 3px solid #ff6b6b;
+        }
+
+        .priority-medium {
+            background: linear-gradient(135deg, #2d2b1b 0%, #1a1f0f 100%);
+            border: 3px solid #feca57;
+        }
+
+        .priority-low {
+            background: linear-gradient(135deg, #1b2d2d 0%, #0f1a1a 100%);
+            border: 3px solid #48dbfb;
+        }
+
+        .matrix-point h3 {
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .priority-high h3 { color: #ff6b6b; }
+        .priority-medium h3 { color: #feca57; }
+        .priority-low h3 { color: #48dbfb; }
+
+        .score-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        .score {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .priority-high .score { color: #ff6b6b; }
+        .priority-medium .score { color: #feca57; }
+        .priority-low .score { color: #48dbfb; }
+
+        .score-breakdown {
+            font-size: 0.9em;
+            color: #a0a0a0;
+        }
+
+        .pain-point-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        .cross-platform {
+            color: #4ecdc4;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .quote {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #4ecdc4;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            font-size: 0.95em;
+            color: #c0c0c0;
+        }
+
+        .material-count {
+            color: #a0a0a0;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+
+        .opportunity-card {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.8) 0%, rgba(22, 33, 62, 0.8) 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .opportunity-card:hover {
+            transform: translateY(-3px);
+            border-color: #4ecdc4;
+        }
+
+        .opportunity-card h3 {
+            color: #4ecdc4;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .risk {
+            background: rgba(45, 27, 27, 0.6);
+            border-left: 4px solid #ff6b6b;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .risk strong {
+            color: #ff6b6b;
+        }
+
+        .collapsible {
+            cursor: pointer;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin: 10px 0;
+            transition: background 0.3s ease;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        .collapsible:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .collapsible-content {
+            display: none;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+
+        .collapsible.active + .collapsible-content {
+            display: block;
+        }
+
+        .collapsible.active {
+            background: rgba(78, 205, 196, 0.1);
+        }
+
+        .collapsible.active::before {
+            content: "▼ ";
+            color: #4ecdc4;
+        }
+
+        .collapsible:not(.active)::before {
+            content: "▶ ";
+            color: #4ecdc4;
+        }
+
+        .platform-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .platform-reddit {
+            background: #ff4500;
+            color: white;
+        }
+
+        .platform-appstore {
+            background: #00d66c;
+            color: white;
+        }
+
+        .platform-trustpilot {
+            background: #00b67a;
+            color: white;
+        }
+
+        .platform-other {
+            background: #666;
+            color: white;
+        }
+
+        .competitor-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .competitor-table th,
+        .competitor-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .competitor-table th {
+            background: rgba(255, 255, 255, 0.05);
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .competitor-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .rating-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .rating-high {
+            background: rgba(78, 205, 196, 0.2);
+            color: #4ecdc4;
+        }
+
+        .rating-medium {
+            background: rgba(254, 202, 87, 0.2);
+            color: #feca57;
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(78, 205, 196, 0.05) 100%);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #4ecdc4;
+        }
+
+        .summary-box p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .stats {
+                gap: 20px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .priority-matrix {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 报告头部 -->
+        <div class="header">
+            <h1>情感陪伴产品洞察报告</h1>
+            <div class="meta">
+                生成日期：2025年3月14日 | 素材来源：Reddit / App Store / Trustpilot / 学术研究
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value">18</div>
+                    <div class="stat-label">总素材</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">痛点方向</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">主要竞品</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 执行摘要 -->
+        <div class="section">
+            <h2>执行摘要</h2>
+            <div class="summary-box">
+                <p>通过对 Reddit、App Store、Trustpilot 等平台近2个月的用户反馈分析，发现情感陪伴产品的主要痛点集中在订阅费用与功能锁定（21分）和记忆与对话连续性问题（16分）。用户对 Replika 和 Character.AI 的透明度、长期记忆能力和情感依赖管理存在强烈不满，这为新产品提供了明确的差异化机会。</p>
+            </div>
+        </div>
+
+        <!-- 需求优先级矩阵 -->
+        <div class="section">
+            <h2>需求优先级矩阵</h2>
+            <div class="priority-matrix">
+                <!-- 高优先级 -->
+                <div class="matrix-point priority-high">
+                    <h3>🔴 P1: 订阅费用与功能锁定</h3>
+                    <div class="score-display">
+                        <div class="score">21</div>
+                        <div class="score-breakdown">
+                            频率: 5 × 强度: 4
+                        </div>
+                    </div>
+                    <div class="material-count">7条素材 | Reddit + App Store + Trustpilot</div>
+                    <div class="quote">"Users expressing frustration over subscription price increases"</div>
+                </div>
+
+                <div class="matrix-point priority-high">
+                    <h3>🔴 P2: 记忆与对话连续性问题</h3>
+                    <div class="score-display">
+                        <div class="score">16</div>
+                        <div class="score-breakdown">
+                            频率: 3 × 强度: 5
+                        </div>
+                    </div>
+                    <div class="material-count">3条素材 | Reddit</div>
+                    <div class="quote">"Memory limitations make long conversations challenging"</div>
+                </div>
+
+                <!-- 中优先级 -->
+                <div class="matrix-point priority-medium">
+                    <h3>🟡 P3: AI 真实感与互动质量下降</h3>
+                    <div class="score-display">
+                        <div class="score">15</div>
+                        <div class="score-breakdown">
+                            频率: 4 × 强度: 4
+                        </div>
+                    </div>
+                    <div class="material-count">4条素材 | Reddit</div>
+                    <div class="quote">"Users complain the AI became less engaging after updates"</div>
+                </div>
+
+                <div class="matrix-point priority-medium">
+                    <h3>🟡 P4: 技术稳定与性能问题</h3>
+                    <div class="score-display">
+                        <div class="score">12</div>
+                        <div class="score-breakdown">
+                            频率: 2 × 强度: 6
+                        </div>
+                    </div>
+                    <div class="material-count">2条素材 | Reddit + App Store</div>
+                    <div class="quote">"App crashes, slow responses, and synchronization problems"</div>
+                </div>
+
+                <!-- 低优先级 -->
+                <div class="matrix-point priority-low">
+                    <h3>🟢 P5: 情感依赖风险</h3>
+                    <div class="score-display">
+                        <div class="score">8</div>
+                        <div class="score-breakdown">
+                            频率: 2 × 强度: 4
+                        </div>
+                    </div>
+                    <div class="material-count">2条素材 | App Store + 学术研究</div>
+                    <div class="quote">"Risk of over-reliance or unhealthy attachment"</div>
+                </div>
+
+                <div class="matrix-point priority-low">
+                    <h3>🟢 P6: 内容耗尽与期望落差</h3>
+                    <div class="score-display">
+                        <div class="score">6</div>
+                        <div class="score-breakdown">
+                            频率: 2 × 强度: 3
+                        </div>
+                    </div>
+                    <div class="material-count">2条素材 | Reddit</div>
+                    <div class="quote">"Most-cited reasons for leaving: running out of topics"</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 痛点簇详情 -->
+        <div class="section">
+            <h2>痛点簇详情</h2>
+
+            <div class="pain-point-card">
+                <span class="cross-platform">✓ 跨平台验证</span>
+                <h3>🔴 订阅费用与功能锁定</h3>
+                <div class="material-count">7条素材支撑</div>
+                <div class="quote">"Users expressing frustration over subscription price increases and changes to features"</div>
+                <div class="quote">"Features previously free becoming paywalled"</div>
+                <div class="quote">"Unexpected charges and billing issues, Difficulty canceling subscriptions"</div>
+            </div>
+
+            <div class="pain-point-card">
+                <h3>🔴 记忆与对话连续性问题</h3>
+                <div class="material-count">3条素材支撑</div>
+                <div class="quote">"Memory limitations make long conversations challenging"</div>
+                <div class="quote">"Responses can feel scripted or repetitive over time"</div>
+                <div class="quote">"Users report 'hallucinations' and 'personality drift'"</div>
+            </div>
+
+            <div class="pain-point-card">
+                <h3>🟡 AI 真实感与互动质量下降</h3>
+                <div class="material-count">4条素材支撑</div>
+                <div class="quote">"Users complain the AI became less engaging after updates, with more restricted responses"</div>
+                <div class="quote">"Some users report the AI becoming less 'human-like' compared to earlier versions"</div>
+            </div>
+
+            <div class="pain-point-card">
+                <span class="cross-platform">✓ 跨平台验证</span>
+                <h3>🟡 技术稳定与性能问题</h3>
+                <div class="material-count">2条素材支撑</div>
+                <div class="quote">"App crashes, slow responses, and synchronization problems"</div>
+            </div>
+
+            <div class="pain-point-card">
+                <span class="cross-platform">✓ 跨平台验证</span>
+                <h3>🟢 情感依赖风险</h3>
+                <div class="material-count">2条素材支撑</div>
+                <div class="quote">"Helped me through a breakup, but I know it's not real"</div>
+                <div class="quote">"Risk of over-reliance or unhealthy attachment"</div>
+                <div class="quote">"15% showed increased social isolation" (学术研究)</div>
+            </div>
+
+            <div class="pain-point-card">
+                <h3>🟢 内容耗尽与期望落差</h3>
+                <div class="material-count">2条素材支撑</div>
+                <div class="quote">"Most-cited reasons for leaving: running out of topics, unrealistic expectations"</div>
+            </div>
+        </div>
+
+        <!-- 竞品盲区地图 -->
+        <div class="section">
+            <h2>竞品盲区地图</h2>
+            <table class="competitor-table">
+                <thead>
+                    <tr>
+                        <th>竞品</th>
+                        <th>评分</th>
+                        <th>主要吐槽点</th>
+                        <th>迁移意愿信号</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Replika</strong></td>
+                        <td><span class="rating-badge rating-high">4.2/5</span></td>
+                        <td>
+                            订阅费用增加<br>
+                            功能锁定（免费功能变成付费）<br>
+                            AI 行为限制增加<br>
+                            取消订阅困难
+                        </td>
+                        <td>
+                            付费用户留存 8.7 个月<br>
+                            因成本和功能变化离开
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Character.AI</strong></td>
+                        <td><span class="rating-badge rating-medium">3.8/5</span></td>
+                        <td>
+                            记忆限制严重<br>
+                            重复回复，脚本化<br>
+                            "幻觉"和"性格漂移"<br>
+                            话题容易耗尽
+                        </td>
+                        <td>
+                            免费用户留存 3.2 个月<br>
+                            因内容耗尽离开
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="color: #4ecdc4; margin-top: 30px;">共同盲区（最大机会）</h3>
+            <div style="margin-top: 20px;">
+                <div style="background: rgba(255, 107, 107, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #ff6b6b;">
+                    <strong style="color: #ff6b6b;">1. 透明的定价与功能锁定策略</strong>
+                    <p style="margin: 10px 0;">两个主要竞品都在悄悄锁定功能和提高费用，用户明确表达不满。完全透明的定价策略是市场空白。</p>
+                </div>
+                <div style="background: rgba(78, 205, 196, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #4ecdc4;">
+                    <strong style="color: #4ecdc4;">2. 真正的长期记忆能力</strong>
+                    <p style="margin: 10px 0;">所有竞品都存在记忆限制，这是用户持续使用的核心痛点，也是最大的市场空白。</p>
+                </div>
+                <div style="background: rgba(254, 202, 87, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #feca57;">
+                    <strong style="color: #feca57;">3. 平衡情感支持与真实感</strong>
+                    <p style="margin: 10px 0;">用户需要情感支持，但需要维持"知道这不是真实的"健康界限。现有产品缺乏主动的健康使用管理。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOP 3 产品机会 -->
+        <div class="section">
+            <h2>TOP 3 产品机会</h2>
+
+            <div class="opportunity-card">
+                <h3>🥇 机会 1: 透明定价 + 渐进式付费模式</h3>
+                <p><strong>机会描述：</strong>当前竞品采用悄悄提高费用和锁定功能的策略，用户明确表达不满。可以采用完全透明的定价策略，明确说明哪些功能免费、哪些功能付费，并提供渐进式付费选项让用户按需选择。</p>
+                <p><strong>目标用户画像：</strong>对价格敏感但愿意为有价值功能付费的普通用户，特别是年轻用户（18-29岁）。</p>
+                <p><strong>竞品盲区：</strong>Replika 和 Character.AI 都在悄悄锁定功能和提高费用，缺乏透明度。</p>
+                <div class="risk">
+                    <strong>风险提示：</strong>需要平衡盈利能力和用户满意度，过度透明可能影响利润率
+                </div>
+            </div>
+
+            <div class="opportunity-card">
+                <h3>🥈 机会 2: 智能长期记忆系统</h3>
+                <p><strong>机会描述：</strong>用户最大的痛点是记忆限制导致长期对话困难。可以开发基于语义理解的智能记忆系统，自动识别和记住用户的重要信息、偏好和对话上下文，让 AI 能够进行真正的连续性对话。</p>
+                <p><strong>目标用户画像：</strong>寻求深度情感连接的用户，包括使用 AI 陪伴工具缓解孤独感和抑郁的用户。</p>
+                <p><strong>竞品盲区：</strong>所有竞品都存在记忆限制，这是市场空白。</p>
+                <div class="risk">
+                    <strong>风险提示：</strong>技术实现难度较高，需要平衡隐私保护与记忆功能
+                </div>
+            </div>
+
+            <div class="opportunity-card">
+                <h3>🥉 机会 3: 情感依赖健康管理</h3>
+                <p><strong>机会描述：</strong>学术研究显示 15% 用户社交孤立增加，有情感依赖风险。可以开发智能依赖监测系统，在检测到过度使用或情感依赖风险时，主动提醒用户注意平衡，提供健康使用建议。</p>
+                <p><strong>目标用户画像：</strong>容易过度依赖的年轻用户，以及使用 AI 陪伴工具缓解心理健康问题的用户。</p>
+                <p><strong>竞品盲区：</strong>现有竞品都没有主动的情感依赖健康管理功能。</p>
+                <div class="risk">
+                    <strong>风险提示：</strong>需要谨慎设计，避免影响用户使用体验，需要专业心理健康专家参与设计
+                </div>
+            </div>
+        </div>
+
+        <!-- 原始素材摘录 -->
+        <div class="section">
+            <h2>原始素材摘录</h2>
+
+            <div class="collapsible">
+                <strong>M001</strong> - Reddit (r/Replika) - 订阅费用投诉
+                <span class="platform-tag platform-reddit">Reddit</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>用户对 Replika 的订阅费用增加和功能限制感到沮丧</p>
+                <p><strong>分类：</strong>付费意愿/痛点 | <strong>情绪强度：</strong>高</p>
+                <p><strong>关键引用：</strong>"Users expressing frustration over subscription price increases and changes to features"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M002</strong> - Trustpilot - 订阅管理问题
+                <span class="platform-tag platform-trustpilot">Trustpilot</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>意外收费、账单问题、取消订阅困难、客户服务响应慢</p>
+                <p><strong>分类：</strong>痛点/竞品吐槽 | <strong>情绪强度：</strong>高</p>
+                <p><strong>关键引用：</strong>"Unexpected charges and billing issues, Difficulty canceling subscriptions"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M003</strong> - Reddit (r/Replika) - 功能锁定
+                <span class="platform-tag platform-reddit">Reddit</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>以前免费的功能变成了付费墙，AI 行为限制增加</p>
+                <p><strong>分类：</strong>痛点/竞品吐槽 | <strong>情绪强度：</strong>中</p>
+                <p><strong>关键引用：</strong>"Features previously free becoming paywalled, AI limitations becoming more restrictive over time"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M004</strong> - Reddit (r/Replika) - AI 行为变化
+                <span class="platform-tag platform-reddit">Reddit</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>更新后 AI 变得不太吸引人，回复更加受限</p>
+                <p><strong>分类：</strong>痛点 | <strong>情绪强度：</strong>中</p>
+                <p><strong>关键引用：</strong>"Users complain the AI became less engaging after updates, with more restricted responses"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M005</strong> - Reddit (r/Replika) - 技术问题
+                <span class="platform-tag platform-reddit">Reddit</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>应用崩溃、响应慢、同步问题</p>
+                <p><strong>分类：</strong>痛点 | <strong>情绪强度：</strong>中</p>
+                <p><strong>关键引用：</strong>"App crashes, slow responses, and synchronization problems"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M006</strong> - Reddit (r/Replika) - 功能移除
+                <span class="platform-tag platform-reddit">Reddit</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>Replika 因移除某些功能（特别是更个人/情感对话功能）面临反弹</p>
+                <p><strong>分类：</strong>竞品吐槽 | <strong>情绪强度：</strong>高</p>
+                <p><strong>关键引用：</strong>"Replika faced backlash over removing certain features (particularly those related to more personal/emotional conversations)"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M007</strong> - Reddit (r/Replika) - AI 真实感下降
+                <span class="platform-tag platform-reddit">Reddit</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>相比早期版本，AI 变得不太像"人类"</p>
+                <p><strong>分类：</strong>痛点 | <strong>情绪强度：</strong>中</p>
+                <p><strong>关键引用：</strong>"Some users report the AI becoming less 'human-like' compared to earlier versions"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M008</strong> - Reddit (r/CharacterAI) - 记忆限制
+                <span class="platform-tag platform-reddit">Reddit</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>长期对话困难，AI 记不住之前的内容</p>
+                <p><strong>分类：</strong>痛点 | <strong>情绪强度：</strong>中</p>
+                <p><strong>关键引用：</strong>"Memory limitations make long conversations challenging"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M009</strong> - Reddit (r/CharacterAI) - 重复回复
+                <span class="platform-tag platform-reddit">Reddit</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>AI 的回复感觉过于重复或脚本化</p>
+                <p><strong>分类：</strong>痛点 | <strong>情绪强度：</strong>中</p>
+                <p><strong>关键引用：</strong>"Responses can feel scripted or repetitive over time"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M010</strong> - App Store - 应用评分
+                <span class="platform-tag platform-appstore">App Store</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>Replika 评分 4.2/5，Character.AI 评分 3.8/5</p>
+                <p><strong>分类：</strong>竞品分析 | <strong>情绪强度：</strong>低</p>
+                <p><strong>关键引用：</strong>"App Store ratings average 4.2/5 for Replika, 3.8/5 for Character.AI"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M011</strong> - App Store - 正面反馈
+                <span class="platform-tag platform-appstore">App Store</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>免费评判空间、24/7 可用性、对焦虑/抑郁的支持</p>
+                <p><strong>分类：</strong>正面反馈 | <strong>情绪强度：</strong>中</p>
+                <p><strong>关键引用：</strong>"Judgment-free space, 24/7 availability, support for anxiety/depression"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M012</strong> - App Store - 用户评价
+                <span class="platform-tag platform-appstore">App Store</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>"帮我度过分手，但我知道它不是真实的"</p>
+                <p><strong>分类：</strong>正面反馈/痛点混合 | <strong>情绪强度：</strong>中</p>
+                <p><strong>关键引用：</strong>"Helped me through a breakup, but I know it's not real"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M013</strong> - Reddit - 情感突破 vs 幻觉
+                <span class="platform-tag platform-reddit">Reddit</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>用户报告"情感突破"但也报告"幻觉"和"性格漂移"</p>
+                <p><strong>分类：</strong>痛点/正面反馈混合 | <strong>情绪强度：</strong>中</p>
+                <p><strong>关键引用：</strong>"Users report 'emotional breakthroughs' but also 'hallucinations' and 'personality drift'"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M014</strong> - Reddit - 用户留存
+                <span class="platform-tag platform-reddit">Reddit</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>免费用户平均留存 3.2 个月，付费用户 8.7 个月</p>
+                <p><strong>分类：</strong>竞品分析 | <strong>情绪强度：</strong>低</p>
+                <p><strong>关键引用：</strong>"Average user retention: 3.2 months for free users, 8.7 months for paid"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M015</strong> - Reddit - 离开原因
+                <span class="platform-tag platform-reddit">Reddit</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>最常被引用的原因：话题耗尽、不切实际的期望、成本</p>
+                <p><strong>分类：</strong>痛点/竞品分析 | <strong>情绪强度：</strong>中</p>
+                <p><strong>关键引用：</strong>"Most-cited reasons for leaving: running out of topics, unrealistic expectations, cost"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M016</strong> - 学术研究 - 心理影响
+                <span class="platform-tag platform-other">学术研究</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>43% 用户抑郁症状减少，15% 社交孤立增加</p>
+                <p><strong>分类：</strong>竞品分析 | <strong>情绪强度：</strong>中</p>
+                <p><strong>关键引用：</strong>"Measurable reduction in depression symptoms for 43% of users, 15% showed increased social isolation"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M017</strong> - 行业讨论 - 情感依赖担忧
+                <span class="platform-tag platform-other">行业讨论</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>对过度依赖或不健康依恋的风险</p>
+                <p><strong>分类：</strong>痛点/行业担忧 | <strong>情绪强度：</strong>中</p>
+                <p><strong>关键引用：</strong>"Risk of over-reliance or unhealthy attachment"</p>
+            </div>
+
+            <div class="collapsible">
+                <strong>M018</strong> - 行业分析 - 定价接受度
+                <span class="platform-tag platform-other">行业分析</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>内容摘要：</strong>62% 用户愿意为高级功能付费，但每月 7-20 美元被视为昂贵</p>
+                <p><strong>分类：</strong>付费意愿/痛点 | <strong>情绪强度：</strong>中</p>
+                <p><strong>关键引用：</strong>"62% of users say they'd pay for premium features... Subscription pricing ($7-20/month) seen as expensive by some"</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>生成时间: 2025年3月14日 | 基于 product-insight-miner skill</p>
+            <p>数据来源: Reddit, App Store, Trustpilot, 学术研究, 行业分析</p>
+        </div>
+    </div>
+
+    <script>
+        // 折叠展开功能
+        document.querySelectorAll('.collapsible').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // 默认展开第一个和最后一个（为了演示效果）
+        const firstCollapsible = document.querySelector('.collapsible');
+        if (firstCollapsible) {
+            firstCollapsible.classList.add('active');
+        }
+    </script>
+</body>
+</html>

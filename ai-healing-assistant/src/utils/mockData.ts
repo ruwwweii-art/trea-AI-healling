@@ -1,0 +1,145 @@
+import { EmotionRecord, ChatMessage, MicroAction } from '../types';
+
+// Mock 情绪记录数据
+export const mockEmotionRecords: EmotionRecord[] = [
+  {
+    id: '1',
+    date: new Date('2025-03-14T09:00:00'),
+    score: 4,
+    type: 'anxiety',
+    keywords: ['学习压力', '疲惫'],
+    intensity: 4,
+    trigger: '学习压力',
+    duration: '今天',
+  },
+  {
+    id: '2',
+    date: new Date('2025-03-13T10:30:00'),
+    score: 5,
+    type: 'calm',
+    keywords: ['平静', '充实'],
+    intensity: 2,
+    trigger: '未知',
+    duration: '今天',
+  },
+  {
+    id: '3',
+    date: new Date('2025-03-12T14:20:00'),
+    score: 3,
+    type: 'low',
+    keywords: ['孤独', '空虚'],
+    intensity: 5,
+    trigger: '人际关系',
+    duration: '最近几天',
+  },
+  {
+    id: '4',
+    date: new Date('2025-03-11T08:45:00'),
+    score: 6,
+    type: 'happy',
+    keywords: ['开心', '朋友聚会'],
+    intensity: 3,
+    trigger: '人际关系',
+    duration: '今天',
+  },
+  {
+    id: '5',
+    date: new Date('2025-03-10T16:30:00'),
+    score: 2,
+    type: 'tired',
+    keywords: ['疲惫', '焦虑'],
+    intensity: 4,
+    trigger: '学习压力',
+    duration: '一直',
+  },
+  {
+    id: '6',
+    date: new Date('2025-03-09T11:15:00'),
+    score: 4,
+    type: 'anxiety',
+    keywords: ['考试压力'],
+    intensity: 3,
+    trigger: '学习压力',
+    duration: '今天',
+  },
+  {
+    id: '7',
+    date: new Date('2025-03-08T13:00:00'),
+    score: 5,
+    type: 'calm',
+    keywords: ['平静'],
+    intensity: 2,
+    trigger: '未知',
+    duration: '今天',
+  },
+];
+
+// Mock 对话数据
+export const mockChatMessages: ChatMessage[] = [
+  {
+    id: '1',
+    role: 'assistant',
+    content: '轻轻告诉我，今天感觉怎么样...',
+    timestamp: new Date(),
+  },
+];
+
+// Mock 微行动数据
+export const mockMicroActions: MicroAction[] = [
+  {
+    id: '1',
+    type: 'emotional',
+    title: '3分钟呼吸练习',
+    description: '4-7-8呼吸法，专注呼吸节奏',
+    duration: 3,
+    emoji: '💡',
+  },
+  {
+    id: '2',
+    type: 'emotional',
+    title: '听一首疗愈音乐',
+    description: '推荐平静风格的3-5分钟音乐',
+    duration: 5,
+    emoji: '🎵',
+  },
+  {
+    id: '3',
+    type: 'emotional',
+    title: '喝一杯温水',
+    description: '慢下来，感受温度和味道',
+    duration: 2,
+    emoji: '☕',
+  },
+  {
+    id: '4',
+    type: 'mindset',
+    title: '写下三件值得感恩的事',
+    description: '转移注意力到积极面',
+    duration: 5,
+    emoji: '📝',
+  },
+  {
+    id: '5',
+    type: 'mindset',
+    title: '到阳台散步5分钟',
+    description: '换个环境，转换心情',
+    duration: 5,
+    emoji: '🚶',
+  },
+  {
+    id: '6',
+    type: 'action',
+    title: '读5页轻松的书',
+    description: '转移注意力，减少焦虑循环',
+    duration: 10,
+    emoji: '📚',
+  },
+  {
+    id: '7',
+    type: 'action',
+    title: '做10个简单的拉伸动作',
+    description: '身体放松带动心理放松',
+    duration: 5,
+    emoji: '🏃',
+  },
+];
